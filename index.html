@@ -5,29 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="A static personal website styled with a compact chrome-panel interface."
+      content="Juho's static personal website with projects, CV, and contact links."
     >
-    <title>Your Name | Personal Website</title>
+    <title>Juho | Personal Website</title>
     <style>
       :root {
-        color-scheme: light;
-        --primary: #e60012;
-        --signal: #f68d1f;
-        --amber: #ecab37;
-        --nav-gold: #e48600;
-        --canvas: #7a8aba;
-        --periwinkle: #8ba1d4;
-        --canvas-soft: #9fbee7;
-        --lavender: #acace7;
-        --ice: #c0d5e6;
-        --chrome-indigo: #3d4f97;
-        --muted-indigo: #60619c;
-        --platinum: #dedede;
-        --surface: #ffffff;
-        --carbon: #21242e;
-        --ink: #21242e;
-        --ink-soft: #3d4f97;
-        --hairline: rgba(33, 36, 46, 0.35);
+        color-scheme: dark;
+        --canvas-night: #000000;
+        --canvas-night-soft: #0a0a0a;
+        --canvas-light: #ffffff;
+        --canvas-cool: #f0f0fa;
+        --hairline-on-dark: #3a3a3f;
+        --on-primary: #ffffff;
+        --on-primary-mute: #f0f0fa;
+        --ink: #000000;
+        --ink-mute: #5a5a5f;
+        --nav-height: 76px;
+        --container: 1200px;
       }
 
       * {
@@ -40,27 +34,28 @@
 
       body {
         margin: 0;
-        min-height: 100vh;
-        background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-          #4d5f9e;
-        background-size: 16px 16px, 16px 16px, auto;
-        color: var(--ink);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        line-height: 1.4;
+        background: var(--canvas-night);
+        color: var(--on-primary);
+        font-family:
+          "D-DIN",
+          "Arial Narrow",
+          Arial,
+          Verdana,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.32px;
       }
 
       a {
-        color: var(--ink-soft);
-        font-weight: 700;
+        color: var(--on-primary);
+        text-underline-offset: 0.22em;
       }
 
       a:focus-visible,
       button:focus-visible {
-        outline: 3px solid #ffffff;
-        outline-offset: 2px;
+        outline: 2px solid var(--on-primary);
+        outline-offset: 5px;
       }
 
       h1,
@@ -71,848 +66,351 @@
       }
 
       .skip-link {
-        position: absolute;
-        left: 12px;
-        top: 12px;
-        z-index: 20;
-        transform: translateY(-150%);
-        background: var(--carbon);
-        color: var(--surface);
-        padding: 8px 12px;
+        position: fixed;
+        left: 24px;
+        top: 24px;
+        z-index: 100;
+        transform: translateY(-160%);
+        border: 1px solid var(--on-primary);
+        border-radius: 32px;
+        background: var(--canvas-night);
+        color: var(--on-primary);
+        padding: 14px 20px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.17px;
         text-decoration: none;
+        text-transform: uppercase;
       }
 
       .skip-link:focus {
         transform: translateY(0);
       }
 
-      .page-shell {
-        width: min(830px, calc(100% - 16px));
-        margin: 12px auto;
-        position: relative;
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        min-height: var(--nav-height);
+        background: transparent;
       }
 
-      .chrome-shell {
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.23), rgba(255, 255, 255, 0) 44px),
-          repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 5px),
-          var(--canvas);
-        border: 2px solid var(--chrome-indigo);
-        box-shadow:
-          inset 0 2px 0 var(--ice),
-          inset 0 -3px 0 var(--chrome-indigo),
-          0 0 0 2px rgba(255, 255, 255, 0.2);
-        clip-path: polygon(
-          14px 0,
-          calc(100% - 14px) 0,
-          100% 14px,
-          100% calc(100% - 14px),
-          calc(100% - 14px) 100%,
-          14px 100%,
-          0 calc(100% - 14px),
-          0 14px
-        );
-        padding: 8px;
-      }
-
-      .masthead {
+      .nav-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        min-height: 62px;
-        padding: 4px 4px 8px;
+        gap: 32px;
+        width: min(var(--container), calc(100% - 64px));
+        margin: 0 auto;
+        padding: 24px 0;
       }
 
-      .welcome {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-width: 0;
-      }
-
-      .pixel-mark {
-        display: grid;
-        place-items: center;
-        flex: 0 0 42px;
-        width: 42px;
-        height: 42px;
-        background:
-          linear-gradient(135deg, var(--primary) 0 48%, #9b0010 48% 100%);
-        border: 2px solid var(--carbon);
-        color: var(--surface);
+      .brand {
+        color: var(--on-primary);
         font-size: 18px;
-        font-weight: 900;
-        line-height: 1;
-        box-shadow:
-          inset 2px 2px 0 rgba(255, 255, 255, 0.45),
-          inset -2px -2px 0 rgba(0, 0, 0, 0.25);
-      }
-
-      .speech-bubble {
-        position: relative;
-        max-width: 320px;
-        margin: 0;
-        border: 2px solid var(--chrome-indigo);
-        border-radius: 10px;
-        background: var(--surface);
-        color: var(--carbon);
-        padding: 8px 10px;
-        font-size: 10px;
         font-weight: 700;
-      }
-
-      .speech-bubble::before {
-        content: "";
-        position: absolute;
-        left: -8px;
-        top: 18px;
-        width: 12px;
-        height: 12px;
-        background: var(--surface);
-        border-left: 2px solid var(--chrome-indigo);
-        border-bottom: 2px solid var(--chrome-indigo);
-        transform: rotate(45deg);
-      }
-
-      .asset-console {
-        display: grid;
-        gap: 4px;
-        min-width: 220px;
-        border: 1px solid var(--chrome-indigo);
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
-          var(--carbon);
-        background-size: 6px 6px, auto;
-        color: var(--surface);
-        padding: 8px;
-      }
-
-      .asset-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        font-size: 10px;
-      }
-
-      .asset-row span:first-child {
-        color: var(--canvas-soft);
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-
-      .asset-chip {
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        border-radius: 2px;
-        background: var(--amber);
-        color: var(--carbon);
-        padding: 2px 5px;
-        font-weight: 900;
-      }
-
-      .primary-nav {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 34px;
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-          var(--carbon);
-        background-size: 5px 5px, auto;
-        border: 1px solid #11141c;
-        box-shadow:
-          inset 0 2px 0 rgba(255, 255, 255, 0.14),
-          inset 0 -2px 0 rgba(0, 0, 0, 0.45);
-        padding: 4px 6px;
-      }
-
-      .logo-pill {
-        flex: 0 0 auto;
-        border: 2px solid var(--primary);
-        border-radius: 9999px;
-        background: var(--surface);
-        color: var(--primary);
-        padding: 3px 14px 4px;
-        font-size: 13px;
-        font-weight: 900;
-        line-height: 1;
+        letter-spacing: 1.6px;
+        line-height: 0.95;
         text-decoration: none;
         text-transform: uppercase;
-      }
-
-      .nav-links,
-      .subnav-links,
-      .utility-links,
-      .left-rail,
-      .contact-list,
-      .status-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
       }
 
       .nav-links {
         display: flex;
         align-items: center;
-        flex: 1 1 auto;
-        gap: 2px;
+        justify-content: flex-end;
+        gap: 28px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
       }
 
       .nav-links a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 28px;
-        color: var(--nav-gold);
-        font-size: 13px;
-        font-weight: 900;
-        padding: 0 8px;
+        color: var(--on-primary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.17px;
+        line-height: 2;
         text-decoration: none;
         text-transform: uppercase;
       }
 
       .nav-links a:hover {
-        color: var(--amber);
-      }
-
-      .utility-links {
-        display: flex;
-        flex: 0 0 auto;
-        gap: 4px;
-      }
-
-      .utility-chip,
-      .button-primary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        border: 1px solid #8b5f12;
-        border-radius: 2px;
-        background: linear-gradient(180deg, #f7c663, var(--amber));
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.62),
-          inset 0 -2px 0 rgba(74, 45, 3, 0.35);
-        color: var(--carbon);
-        font-size: 11px;
-        font-weight: 900;
-        padding: 7px 10px;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      .subnav-strip {
-        background: var(--canvas-soft);
-        border: 1px solid var(--chrome-indigo);
-        border-top: 0;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-        padding: 5px 8px;
-      }
-
-      .subnav-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0;
-      }
-
-      .subnav-links a {
-        border-right: 1px solid rgba(33, 36, 46, 0.32);
-        color: var(--carbon);
-        font-size: 11px;
-        font-weight: 900;
-        padding: 1px 9px;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      .subnav-links li:first-child a {
-        padding-left: 0;
-      }
-
-      .subnav-links li:last-child a {
-        border-right: 0;
-      }
-
-      .content-frame {
-        position: relative;
-        padding-left: 38px;
-      }
-
-      .left-rail {
-        position: absolute;
-        left: 0;
-        top: 8px;
-        display: grid;
-        gap: 5px;
-        width: 30px;
-      }
-
-      .left-rail a {
-        display: grid;
-        place-items: center;
-        min-height: 86px;
-        border: 1px solid #11141c;
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-          var(--carbon);
-        background-size: 5px 5px, auto;
-        color: var(--canvas-soft);
-        font-size: 10px;
-        font-weight: 900;
-        text-decoration: none;
-        text-transform: uppercase;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
+        text-decoration: underline;
       }
 
       main {
-        padding-top: 8px;
+        background: var(--canvas-night);
       }
 
-      .hero-panel,
-      .panel,
-      .rail-box,
-      .promo-card,
-      .status-panel {
-        border: 2px solid var(--chrome-indigo);
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 28px),
-          var(--canvas);
-        box-shadow:
-          inset 0 2px 0 var(--ice),
-          inset 0 -2px 0 rgba(61, 79, 151, 0.78);
-      }
-
-      .hero-panel {
+      .band {
+        position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 230px;
-        gap: 14px;
-        min-height: 220px;
+        align-items: end;
+        min-height: 100vh;
         overflow: hidden;
-        border-radius: 6px;
-        background:
-          linear-gradient(90deg, rgba(172, 172, 231, 0.96), rgba(32, 100, 121, 0.68)),
-          linear-gradient(135deg, transparent 0 20px, rgba(255, 255, 255, 0.18) 20px 22px, transparent 22px 44px),
-          var(--lavender);
-        background-size: auto, 34px 34px, auto;
-        padding: 16px;
+        border-bottom: 1px solid var(--hairline-on-dark);
+        background: var(--canvas-night);
+        padding: calc(var(--nav-height) + 48px) 0 72px;
       }
 
-      .hero-copy {
-        display: grid;
-        align-content: center;
-        min-width: 0;
+      .band.soft {
+        background: var(--canvas-night-soft);
+      }
+
+      .media-band {
+        background: var(--canvas-night);
+      }
+
+      .band-media {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) brightness(0.34) contrast(1.15);
+      }
+
+      .band-inner {
+        position: relative;
+        z-index: 1;
+        width: min(var(--container), calc(100% - 64px));
+        margin: 0 auto;
+      }
+
+      .narrow {
+        max-width: 760px;
       }
 
       .eyebrow {
-        margin: 0 0 8px;
-        color: var(--carbon);
-        font-size: 11px;
-        font-weight: 900;
+        margin: 0 0 12px;
+        color: var(--on-primary-mute);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.96px;
+        line-height: 2;
         text-transform: uppercase;
       }
 
-      .hero-title {
+      .display {
+        max-width: 12ch;
         margin: 0;
-        color: var(--surface);
-        font-size: 44px;
-        font-weight: 900;
-        line-height: 1;
-        text-transform: uppercase;
-        -webkit-text-stroke: 2px var(--chrome-indigo);
-        text-shadow:
-          3px 3px 0 var(--carbon),
-          5px 5px 0 rgba(0, 0, 0, 0.18);
-      }
-
-      .hero-tagline {
-        max-width: 46ch;
-        margin: 10px 0 0;
-        color: var(--carbon);
-        font-size: 15px;
+        color: var(--on-primary);
+        font-family:
+          "D-DIN-Bold",
+          "Arial Narrow",
+          Arial,
+          Verdana,
+          sans-serif;
+        font-size: clamp(40px, 8vw, 80px);
+        font-stretch: condensed;
         font-weight: 700;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 14px;
-      }
-
-      .button-forward {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 44px;
-        border: 1px solid #9f5106;
-        border-radius: 2px;
-        background: linear-gradient(180deg, #ffb74b, var(--signal));
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.58),
-          inset 0 -2px 0 rgba(72, 35, 0, 0.42);
-        color: var(--carbon);
-        font-size: 11px;
-        font-weight: 900;
-        padding: 8px 12px;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      .arrow-disc,
-      .arrow-chip {
-        display: inline-grid;
-        place-items: center;
-        flex: 0 0 auto;
-        background: var(--signal);
-        color: var(--surface);
-        font-weight: 900;
-        line-height: 1;
-      }
-
-      .arrow-disc {
-        width: 24px;
-        height: 24px;
-        border: 1px solid #9f5106;
-        border-radius: 9999px;
-      }
-
-      .profile-plate {
-        align-self: center;
-        justify-self: center;
-        width: 210px;
-        border: 2px solid var(--chrome-indigo);
-        border-radius: 4px;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 30px),
-          var(--periwinkle);
-        padding: 8px;
-        box-shadow:
-          inset 0 2px 0 var(--ice),
-          inset 0 -2px 0 rgba(61, 79, 151, 0.8);
-      }
-
-      .profile-image {
-        display: block;
-        width: 100%;
-        aspect-ratio: 1;
-        border: 2px solid var(--carbon);
-        border-radius: 4px;
-        background: var(--surface);
-        object-fit: cover;
-      }
-
-      .plate-caption {
-        margin: 6px 0 0;
-        color: var(--chrome-indigo);
-        font-size: 10px;
-        font-weight: 900;
-        text-align: center;
-        text-transform: uppercase;
-      }
-
-      .body-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 250px;
-        gap: 8px;
-        margin-top: 8px;
-      }
-
-      .content-stack,
-      .right-rail {
-        display: grid;
-        align-content: start;
-        gap: 8px;
-      }
-
-      .panel,
-      .rail-box,
-      .status-panel {
-        border-radius: 4px;
-        overflow: hidden;
-      }
-
-      .section-label-bar {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        min-height: 30px;
-        border-bottom: 2px solid var(--chrome-indigo);
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
-          var(--canvas);
-        color: var(--carbon);
-        font-size: 11px;
-        font-weight: 900;
-        padding: 6px 8px;
-        text-transform: uppercase;
-      }
-
-      .section-label-bar h2 {
-        margin: 0;
-        font-size: 11px;
-        line-height: 1.1;
-      }
-
-      .label-glyph {
-        display: inline-grid;
-        grid-template-columns: repeat(2, 5px);
-        gap: 2px;
-        width: 12px;
-      }
-
-      .label-glyph i {
-        display: block;
-        width: 5px;
-        height: 5px;
-        background: var(--carbon);
-      }
-
-      .panel-body {
-        background: var(--surface);
-        padding: 12px;
-      }
-
-      .panel-body p {
-        margin: 0;
-      }
-
-      .section-copy {
-        color: var(--ink);
-        font-size: 12px;
-      }
-
-      .news-list {
-        display: grid;
-        gap: 6px;
-      }
-
-      .news-row {
-        display: grid;
-        grid-template-columns: 28px minmax(0, 1fr) 22px;
-        align-items: center;
-        gap: 8px;
-        min-height: 44px;
-        border: 1px solid rgba(61, 79, 151, 0.65);
-        border-radius: 4px;
-        background:
-          linear-gradient(180deg, #ffffff, var(--platinum));
-        padding: 6px;
-      }
-
-      .row-icon {
-        display: grid;
-        place-items: center;
-        width: 26px;
-        height: 26px;
-        border: 1px solid var(--chrome-indigo);
-        border-radius: 2px;
-        background: var(--canvas-soft);
-        color: var(--carbon);
-        font-size: 10px;
-        font-weight: 900;
-      }
-
-      .news-row strong {
-        display: block;
-        color: var(--ink-soft);
-        font-size: 12px;
-      }
-
-      .news-row span {
-        color: var(--carbon);
-        font-size: 10px;
-      }
-
-      .arrow-chip {
-        width: 20px;
-        height: 20px;
-        border: 1px solid #9f5106;
-        border-radius: 2px;
-      }
-
-      .tile-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-      }
-
-      .featured-tile {
-        border: 2px solid var(--carbon);
-        border-radius: 4px;
-        background: var(--carbon);
-        color: var(--surface);
-        padding: 4px;
-      }
-
-      .tile-screen {
-        display: grid;
-        place-items: center;
-        min-height: 74px;
-        border: 1px solid var(--chrome-indigo);
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 40%),
-          repeating-linear-gradient(90deg, rgba(33, 36, 46, 0.08) 0 2px, transparent 2px 7px),
-          var(--periwinkle);
-        color: var(--surface);
-        font-size: 18px;
-        font-weight: 900;
-        text-shadow: 2px 2px 0 var(--chrome-indigo);
-        text-transform: uppercase;
-      }
-
-      .featured-tile p {
-        margin: 4px 0 0;
-        color: var(--canvas-soft);
-        font-size: 10px;
-      }
-
-      .cv-panel {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 10px;
-        border: 1px dotted var(--muted-indigo);
-        background: var(--platinum);
-        padding: 10px;
-      }
-
-      .placeholder-note {
-        color: #7c2d12;
-        font-weight: 900;
-      }
-
-      .rail-actions {
-        display: grid;
-        gap: 5px;
-      }
-
-      .button-secondary {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 44px;
-        border: 1px solid #11141c;
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-          var(--carbon);
-        background-size: 5px 5px, auto;
-        color: var(--surface);
-        font-size: 11px;
-        font-weight: 900;
-        padding: 9px;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-
-      .rail-box .panel-body,
-      .status-panel .panel-body {
-        background: var(--surface);
-      }
-
-      .info-tab {
-        display: inline-flex;
-        align-items: center;
-        min-height: 24px;
-        margin: 0 0 8px;
-        border: 1px solid #8b5f12;
-        border-radius: 2px;
-        background: var(--amber);
-        color: var(--carbon);
-        font-size: 11px;
-        font-weight: 900;
-        padding: 4px 8px;
-        text-transform: uppercase;
-      }
-
-      .status-list {
-        display: grid;
-        gap: 8px;
-      }
-
-      .status-list li {
-        display: grid;
-        grid-template-columns: 14px minmax(0, 1fr);
-        gap: 6px;
-        align-items: start;
-      }
-
-      .radio-dot {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        margin-top: 2px;
-        border: 1px solid var(--hairline);
-        border-radius: 9999px;
-        background: var(--surface);
-        box-shadow: inset 0 0 0 3px var(--surface);
-      }
-
-      .radio-dot.is-on {
-        background: var(--signal);
-      }
-
-      .promo-card {
-        border-radius: 4px;
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 42%),
-          var(--lavender);
-        padding: 12px;
-      }
-
-      .promo-word {
-        margin: 0;
-        color: var(--surface);
-        font-size: 28px;
-        font-weight: 900;
+        letter-spacing: 1.6px;
         line-height: 0.95;
         text-transform: uppercase;
-        -webkit-text-stroke: 1px var(--chrome-indigo);
-        text-shadow: 2px 2px 0 var(--carbon);
       }
 
-      .promo-card p {
-        margin: 8px 0 0;
-        color: var(--carbon);
-        font-size: 11px;
+      .section-title {
+        max-width: 14ch;
+        margin: 0;
+        color: var(--on-primary);
+        font-family:
+          "D-DIN-Bold",
+          "Arial Narrow",
+          Arial,
+          Verdana,
+          sans-serif;
+        font-size: clamp(40px, 6vw, 60px);
         font-weight: 700;
+        letter-spacing: 1.2px;
+        line-height: 1.2;
+        text-transform: uppercase;
       }
 
+      .lead {
+        max-width: 680px;
+        margin: 24px 0 0;
+        color: var(--on-primary);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        margin-top: 32px;
+        border: 1px solid var(--on-primary);
+        border-radius: 32px;
+        background: transparent;
+        color: var(--on-primary);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.17px;
+        line-height: 0.94;
+        padding: 18px 24px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .cta:hover {
+        background: var(--canvas-cool);
+        color: var(--ink);
+      }
+
+      .copy-panel {
+        max-width: 760px;
+        border: 1px solid var(--hairline-on-dark);
+        background: var(--canvas-night-soft);
+        padding: 24px;
+      }
+
+      .copy-panel p {
+        margin: 0;
+      }
+
+      .project-list,
       .contact-list {
         display: grid;
-        gap: 6px;
+        gap: 24px;
+        margin: 32px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .project-item {
+        display: grid;
+        gap: 8px;
+        max-width: 760px;
+        border-top: 1px solid var(--hairline-on-dark);
+        padding-top: 24px;
+      }
+
+      .project-item strong,
+      .contact-list strong {
+        color: var(--on-primary);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.17px;
+        line-height: 0.94;
+        text-transform: uppercase;
+      }
+
+      .project-item span,
+      .contact-list span {
+        color: var(--on-primary-mute);
+        font-size: 16px;
+        line-height: 1.5;
       }
 
       .contact-list li {
-        border: 1px solid rgba(61, 79, 151, 0.65);
-        border-radius: 4px;
-        background: var(--platinum);
-        padding: 7px 8px;
+        display: grid;
+        gap: 8px;
+        max-width: 760px;
+        border-top: 1px solid var(--hairline-on-dark);
+        padding-top: 24px;
       }
 
-      .footer-bar {
+      .contact-list a {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .site-footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
-        margin-top: 8px;
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-          var(--carbon);
-        background-size: 5px 5px, auto;
-        border: 1px solid #11141c;
-        color: var(--canvas-soft);
-        padding: 12px;
-        clip-path: polygon(
-          10px 0,
-          100% 0,
-          100% calc(100% - 10px),
-          calc(100% - 10px) 100%,
-          0 100%,
-          0 10px
-        );
+        gap: 24px;
+        width: min(var(--container), calc(100% - 64px));
+        margin: 0 auto;
+        padding: 32px 0;
+        color: var(--on-primary-mute);
+        font-size: 13px;
+        line-height: 1.5;
       }
 
-      .footer-bar p {
+      .site-footer p {
         margin: 0;
-        font-size: 10px;
       }
 
-      .footer-badge {
-        border: 1px solid #8b5f12;
-        border-radius: 2px;
-        background: var(--amber);
-        color: var(--carbon);
-        font-size: 10px;
-        font-weight: 900;
-        padding: 4px 6px;
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .footer-links a {
+        font-size: 12px;
+        letter-spacing: 0.96px;
         text-transform: uppercase;
       }
 
-      @media (max-width: 720px) {
-        body {
-          font-size: 13px;
+      @media (max-width: 960px) {
+        .nav-bar,
+        .band-inner,
+        .site-footer {
+          width: min(var(--container), calc(100% - 48px));
         }
 
-        .page-shell {
-          width: calc(100% - 10px);
-          margin: 5px auto;
+        .display {
+          font-size: clamp(48px, 10vw, 60px);
         }
 
-        .chrome-shell {
-          padding: 6px;
-          clip-path: none;
+        .section-title {
+          font-size: clamp(40px, 8vw, 48px);
+        }
+      }
+
+      @media (max-width: 767px) {
+        :root {
+          --nav-height: 92px;
         }
 
-        .masthead,
-        .primary-nav,
-        .footer-bar {
-          align-items: stretch;
+        .nav-bar {
+          align-items: flex-start;
+          gap: 16px;
           flex-direction: column;
+          padding: 18px 0;
         }
 
-        .asset-console {
-          min-width: 0;
-          width: 100%;
-        }
-
-        .nav-links,
-        .utility-links {
+        .nav-links {
           flex-wrap: wrap;
+          justify-content: flex-start;
+          gap: 8px 18px;
         }
 
-        .nav-links a,
-        .utility-chip {
-          min-height: 44px;
+        .band {
+          min-height: 92vh;
+          padding-bottom: 56px;
+        }
+      }
+
+      @media (max-width: 599px) {
+        .nav-bar,
+        .band-inner,
+        .site-footer {
+          width: min(var(--container), calc(100% - 32px));
         }
 
-        .content-frame {
-          padding-left: 0;
+        .display,
+        .section-title {
+          font-size: 40px;
         }
 
-        .left-rail {
-          position: static;
-          display: flex;
-          width: auto;
-          margin: 8px 0;
-          overflow-x: auto;
+        .copy-panel {
+          padding: 16px;
         }
 
-        .left-rail a {
-          min-width: 88px;
-          min-height: 44px;
-          writing-mode: horizontal-tb;
-          transform: none;
-        }
-
-        .hero-panel,
-        .body-grid,
-        .cv-panel {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-panel {
-          min-height: 0;
-        }
-
-        .profile-plate {
-          width: min(100%, 230px);
-          justify-self: start;
-          order: -1;
-        }
-
-        .hero-title {
-          font-size: 34px;
-        }
-
-        .tile-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .button-primary,
-        .button-forward,
-        .button-secondary {
+        .cta {
           width: 100%;
+        }
+
+        .site-footer {
+          align-items: flex-start;
+          flex-direction: column;
         }
       }
     </style>
@@ -920,257 +418,98 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="page-shell">
-      <div class="chrome-shell">
-        <header>
-          <div class="masthead">
-            <div class="welcome">
-              <div class="pixel-mark" aria-hidden="true">YN</div>
-              <p class="speech-bubble">Welcome to this profile site. Replace the public details when ready.</p>
-            </div>
-            <div class="asset-console" aria-label="Published asset status">
-              <div class="asset-row">
-                <span>Profile image</span>
-                <span class="asset-chip">assets/profile.png</span>
-              </div>
-              <div class="asset-row">
-                <span>CV file</span>
-                <span class="asset-chip">placeholder</span>
-              </div>
-            </div>
-          </div>
+    <header class="site-header">
+      <nav class="nav-bar" aria-label="Primary navigation">
+        <a class="brand" href="#main">Juho</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#cv">CV</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-          <nav class="primary-nav" aria-label="Primary navigation">
-            <a class="logo-pill" href="#main">Your Name</a>
-            <ul class="nav-links">
-              <li><a href="#about">About</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#cv">CV</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="utility-links" aria-label="Quick links">
-              <li><a class="utility-chip" href="#cv">CV PDF</a></li>
-              <li><a class="utility-chip" href="#contact">Contact</a></li>
-            </ul>
-          </nav>
-
-          <nav class="subnav-strip" aria-label="Secondary navigation">
-            <ul class="subnav-links">
-              <li><a href="#about">Profile</a></li>
-              <li><a href="#projects">Selected Work</a></li>
-              <li><a href="#cv">Resume File</a></li>
-              <li><a href="#contact">Public Links</a></li>
-            </ul>
-          </nav>
-        </header>
-
-        <div class="content-frame">
-          <nav aria-label="Section shortcuts">
-            <ul class="left-rail">
-              <li><a href="#about">About</a></li>
-              <li><a href="#projects">Work</a></li>
-              <li><a href="#cv">CV</a></li>
-              <li><a href="#contact">Links</a></li>
-            </ul>
-          </nav>
-
-          <main id="main">
-            <section class="hero-panel" aria-labelledby="intro-title">
-              <div class="hero-copy">
-                <p class="eyebrow">Personal website</p>
-                <h1 class="hero-title" id="intro-title">Your Name</h1>
-                <p class="hero-tagline">
-                  A compact public profile for selected work, a short bio, and a CV link.
-                </p>
-                <div class="hero-actions" aria-label="Primary actions">
-                  <a class="button-forward" href="#projects">
-                    <span class="arrow-disc" aria-hidden="true">&gt;</span>
-                    View projects
-                  </a>
-                  <a class="button-primary" href="assets/cv.pdf">Download placeholder CV</a>
-                </div>
-              </div>
-              <figure class="profile-plate">
-                <img
-                  class="profile-image"
-                  src="assets/profile.png"
-                  width="640"
-                  height="640"
-                  alt="Placeholder profile portrait"
-                >
-                <figcaption class="plate-caption">Profile image slot</figcaption>
-              </figure>
-            </section>
-
-            <div class="body-grid">
-              <div class="content-stack">
-                <section class="panel" id="about" aria-labelledby="about-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="about-title">Official Profile</h2>
-                  </div>
-                  <div class="panel-body">
-                    <p class="section-copy">
-                      Write a short biography here. Keep it limited to public details you want visitors to know, such as your professional focus, academic interests, or current projects.
-                    </p>
-                  </div>
-                </section>
-
-                <section class="panel" id="projects" aria-labelledby="projects-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="projects-title">Featured Work</h2>
-                  </div>
-                  <div class="panel-body">
-                    <div class="tile-grid">
-                      <article class="featured-tile">
-                        <div class="tile-screen">01</div>
-                        <p><strong>Project One</strong> - describe a public project and your role.</p>
-                      </article>
-                      <article class="featured-tile">
-                        <div class="tile-screen">02</div>
-                        <p><strong>Project Two</strong> - add a publication, demo, or portfolio item.</p>
-                      </article>
-                      <article class="featured-tile">
-                        <div class="tile-screen">03</div>
-                        <p><strong>Project Three</strong> - summarize the outcome in one line.</p>
-                      </article>
-                      <article class="featured-tile">
-                        <div class="tile-screen">04</div>
-                        <p><strong>Project Four</strong> - link this later when a URL is ready.</p>
-                      </article>
-                    </div>
-                  </div>
-                </section>
-
-                <section class="panel" aria-labelledby="updates-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="updates-title">Profile Checklist</h2>
-                  </div>
-                  <div class="panel-body">
-                    <div class="news-list">
-                      <div class="news-row">
-                        <span class="row-icon" aria-hidden="true">IMG</span>
-                        <div>
-                          <strong>Replace the profile image when ready</strong>
-                          <span>Copy a real public image to assets/profile.png or assets/profile.jpg.</span>
-                        </div>
-                        <span class="arrow-chip" aria-hidden="true">&gt;</span>
-                      </div>
-                      <div class="news-row">
-                        <span class="row-icon" aria-hidden="true">TXT</span>
-                        <div>
-                          <strong>Add biography and project summaries</strong>
-                          <span>Use only information you are comfortable publishing.</span>
-                        </div>
-                        <span class="arrow-chip" aria-hidden="true">&gt;</span>
-                      </div>
-                      <div class="news-row">
-                        <span class="row-icon" aria-hidden="true">PDF</span>
-                        <div>
-                          <strong>Replace the placeholder CV</strong>
-                          <span>Publish the real file as assets/cv.pdf.</span>
-                        </div>
-                        <span class="arrow-chip" aria-hidden="true">&gt;</span>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section class="panel" id="cv" aria-labelledby="cv-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="cv-title">CV Archive</h2>
-                  </div>
-                  <div class="panel-body">
-                    <div class="cv-panel">
-                      <p>
-                        <span class="placeholder-note">Placeholder:</span>
-                        the linked PDF contains no private information. Replace it with your real CV only when it is ready for public release.
-                      </p>
-                      <a class="button-forward" href="assets/cv.pdf">
-                        <span class="arrow-disc" aria-hidden="true">&gt;</span>
-                        Download placeholder CV
-                      </a>
-                    </div>
-                  </div>
-                </section>
-              </div>
-
-              <aside class="right-rail" aria-label="Profile actions and notes">
-                <section class="rail-box" aria-labelledby="actions-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="actions-title">Action Rail</h2>
-                  </div>
-                  <div class="panel-body rail-actions">
-                    <a class="button-secondary" href="assets/cv.pdf">
-                      <span class="arrow-disc" aria-hidden="true">&gt;</span>
-                      CV Placeholder
-                    </a>
-                    <a class="button-secondary" href="#projects">
-                      <span class="arrow-disc" aria-hidden="true">&gt;</span>
-                      Projects
-                    </a>
-                    <a class="button-secondary" href="#contact">
-                      <span class="arrow-disc" aria-hidden="true">&gt;</span>
-                      Contact
-                    </a>
-                  </div>
-                </section>
-
-                <section class="rail-box" aria-labelledby="info-title">
-                  <div class="panel-body">
-                    <h2 class="info-tab" id="info-title">What Is - CV File</h2>
-                    <p>
-                      The current PDF is a safe placeholder. Keep the link path as <strong>assets/cv.pdf</strong> when you replace it.
-                    </p>
-                  </div>
-                </section>
-
-                <section class="status-panel" aria-labelledby="status-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="status-title">Site Status</h2>
-                  </div>
-                  <div class="panel-body">
-                    <ul class="status-list">
-                      <li><span class="radio-dot is-on" aria-hidden="true"></span><span>Static GitHub Pages HTML</span></li>
-                      <li><span class="radio-dot is-on" aria-hidden="true"></span><span>No backend or paid external API</span></li>
-                      <li><span class="radio-dot" aria-hidden="true"></span><span>Personal copy still needs your real public details</span></li>
-                    </ul>
-                  </div>
-                </section>
-
-                <section class="promo-card" aria-labelledby="promo-title">
-                  <h2 class="promo-word" id="promo-title">Public Profile</h2>
-                  <p>Use this panel for a short current-role note, availability note, or featured link.</p>
-                </section>
-
-                <section class="rail-box" id="contact" aria-labelledby="contact-title">
-                  <div class="section-label-bar">
-                    <span class="label-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                    <h2 id="contact-title">Contact</h2>
-                  </div>
-                  <div class="panel-body">
-                    <ul class="contact-list" aria-label="Contact details to add">
-                      <li>Email: add a public email</li>
-                      <li>GitHub: add a public profile URL</li>
-                      <li>LinkedIn: add a public profile URL</li>
-                    </ul>
-                  </div>
-                </section>
-              </aside>
-            </div>
-          </main>
+    <main id="main">
+      <section class="band media-band" aria-labelledby="intro-title">
+        <img class="band-media" src="assets/profile.png" alt="">
+        <div class="band-inner">
+          <p class="eyebrow">Personal website</p>
+          <h1 class="display" id="intro-title">Juho</h1>
+          <p class="lead">Hi, I'm Juho ^_____^</p>
+          <a class="cta" href="#projects">View projects</a>
         </div>
+      </section>
 
-        <footer class="footer-bar">
-          <p>&copy; 2026 Your Name. Static personal site for GitHub Pages.</p>
-          <span class="footer-badge">Privacy-safe draft</span>
-        </footer>
-      </div>
-    </div>
+      <section class="band soft" id="about" aria-labelledby="about-title">
+        <div class="band-inner narrow">
+          <p class="eyebrow">About me</p>
+          <h2 class="section-title" id="about-title">Short intro</h2>
+          <div class="copy-panel">
+            <p>Hi, I'm Juho ^_____^</p>
+          </div>
+          <a class="cta" href="#cv">View CV</a>
+        </div>
+      </section>
+
+      <section class="band" id="projects" aria-labelledby="projects-title">
+        <div class="band-inner">
+          <p class="eyebrow">Activities and projects</p>
+          <h2 class="section-title" id="projects-title">Projects</h2>
+          <ul class="project-list">
+            <li class="project-item">
+              <strong>SNU CSE</strong>
+              <span>Project XYZ at XYZ course ('25.01.)</span>
+            </li>
+            <li class="project-item">
+              <strong>SNU Biz</strong>
+              <span>Project ABS at ABC course ('26.01.)</span>
+            </li>
+          </ul>
+          <a class="cta" href="#contact">Contact</a>
+        </div>
+      </section>
+
+      <section class="band soft" id="cv" aria-labelledby="cv-title">
+        <div class="band-inner narrow">
+          <p class="eyebrow">Resume file</p>
+          <h2 class="section-title" id="cv-title">CV</h2>
+          <div class="copy-panel">
+            <p>
+              Placeholder: the linked PDF contains no private information.
+              Replace <strong>assets/cv.pdf</strong> with your real CV only when it is ready for public release.
+            </p>
+          </div>
+          <a class="cta" href="assets/cv.pdf">Download placeholder CV</a>
+        </div>
+      </section>
+
+      <section class="band" id="contact" aria-labelledby="contact-title">
+        <div class="band-inner">
+          <p class="eyebrow">Public links</p>
+          <h2 class="section-title" id="contact-title">Contact</h2>
+          <ul class="contact-list" aria-label="Contact links">
+            <li>
+              <strong>Email</strong>
+              <span><a href="mailto:pangyakid@snu.ac.kr">pangyakid@snu.ac.kr</a></span>
+            </li>
+            <li>
+              <strong>GitHub</strong>
+              <span><a href="https://github.com/Juhok303">github.com/Juhok303</a></span>
+            </li>
+          </ul>
+          <a class="cta" href="https://github.com/Juhok303">Open GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Juho. Static personal site for GitHub Pages.</p>
+      <ul class="footer-links" aria-label="Footer links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </footer>
   </body>
 </html>
