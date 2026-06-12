@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Juho's static personal website with projects, CV, and contact links."
+      content="Juho Kim's static personal website with projects, planned courses, CV, and contact links."
     >
-    <title>Juho | Personal Website</title>
+    <title>Juho Kim | Personal Website</title>
     <style>
       :root {
         color-scheme: dark;
@@ -270,6 +270,10 @@
         margin: 0;
       }
 
+      .copy-panel p + p {
+        margin-top: 12px;
+      }
+
       .project-list,
       .contact-list {
         display: grid;
@@ -420,10 +424,11 @@
 
     <header class="site-header">
       <nav class="nav-bar" aria-label="Primary navigation">
-        <a class="brand" href="#main">Juho</a>
+        <a class="brand" href="#main">Juho Kim</a>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#courses">Courses</a></li>
           <li><a href="#cv">CV</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -435,8 +440,8 @@
         <img class="band-media" src="assets/profile.png" alt="">
         <div class="band-inner">
           <p class="eyebrow">Personal website</p>
-          <h1 class="display" id="intro-title">Juho</h1>
-          <p class="lead">Hi, I'm Juho ^_____^</p>
+          <h1 class="display" id="intro-title">Juho Kim</h1>
+          <p class="lead">Business Administration &amp; Artificial Intelligence</p>
           <a class="cta" href="#projects">View projects</a>
         </div>
       </section>
@@ -444,8 +449,10 @@
       <section class="band soft" id="about" aria-labelledby="about-title">
         <div class="band-inner narrow">
           <p class="eyebrow">About me</p>
-          <h2 class="section-title" id="about-title">Short intro</h2>
+          <h2 class="section-title" id="about-title">About me</h2>
           <div class="copy-panel">
+            <p>Name: Juho Kim</p>
+            <p>Major: Business Administration &amp; Artificial Intelligence</p>
             <p>Hi, I'm Juho ^_____^</p>
           </div>
           <a class="cta" href="#cv">View CV</a>
@@ -458,15 +465,28 @@
           <h2 class="section-title" id="projects-title">Projects</h2>
           <ul class="project-list">
             <li class="project-item">
-              <strong>SNU CSE</strong>
-              <span>Project XYZ at XYZ course ('25.01.)</span>
+              <strong>Amgen Scholars Program 2025</strong>
+              <span>Enhancing Novelty of Flow-Matching Model for Drug Discovery ('25.06-08.)</span>
+              <span>Kyoto University</span>
             </li>
             <li class="project-item">
-              <strong>SNU Biz</strong>
-              <span>Project ABS at ABC course ('26.01.)</span>
+              <strong>Seoul National University</strong>
+              <span>Correlation between Value of Business Group and Internal Transaction ('24.09-12.)</span>
+              <span>Supervised by Dr. Woojin Kim at SNU Biz</span>
             </li>
           </ul>
           <a class="cta" href="#contact">Contact</a>
+        </div>
+      </section>
+
+      <section class="band soft" id="courses" aria-labelledby="courses-title">
+        <div class="band-inner narrow">
+          <p class="eyebrow">Planned course list</p>
+          <h2 class="section-title" id="courses-title">Courses</h2>
+          <div class="copy-panel">
+            <p>(TBD)</p>
+          </div>
+          <a class="cta" href="#cv">View CV</a>
         </div>
       </section>
 
@@ -504,10 +524,11 @@
     </main>
 
     <footer class="site-footer">
-      <p>&copy; 2026 Juho. Static personal site for GitHub Pages.</p>
+      <p>&copy; 2026 Juho Kim. Static personal site for GitHub Pages.</p>
       <ul class="footer-links" aria-label="Footer links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#courses">Courses</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </footer>
