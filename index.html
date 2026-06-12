@@ -1,1 +1,419 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="A simple personal website with profile, projects, and CV links."
+    >
+    <title>Your Name | Personal Website</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fb;
+        --surface: #ffffff;
+        --text: #172033;
+        --muted: #5d6678;
+        --accent: #0f766e;
+        --accent-dark: #115e59;
+        --border: #d8dde8;
+        --shadow: 0 18px 45px rgba(23, 32, 51, 0.08);
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Arial,
+          Helvetica,
+          sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent-dark);
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid rgba(15, 118, 110, 0.35);
+        outline-offset: 3px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        z-index: 10;
+        transform: translateY(-150%);
+        background: var(--text);
+        color: #ffffff;
+        padding: 0.6rem 0.9rem;
+        text-decoration: none;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: min(1100px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 1rem 0;
+      }
+
+      .brand {
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.35rem 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent-dark);
+      }
+
+      main {
+        width: min(1100px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+        align-items: center;
+        gap: clamp(2rem, 6vw, 5rem);
+        padding: clamp(3rem, 8vw, 6rem) 0;
+      }
+
+      .eyebrow {
+        margin: 0 0 0.75rem;
+        color: var(--accent-dark);
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        overflow-wrap: anywhere;
+      }
+
+      h1 {
+        max-width: 11ch;
+        margin: 0;
+        font-size: clamp(2.7rem, 10vw, 5rem);
+        line-height: 0.95;
+      }
+
+      .lead {
+        max-width: 62ch;
+        margin: 1.25rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 2rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 0.7rem 1rem;
+        background: var(--accent);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--accent-dark);
+      }
+
+      .profile-wrap {
+        justify-self: center;
+        width: min(100%, 320px);
+      }
+
+      .profile-image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        object-fit: cover;
+      }
+
+      section {
+        padding: clamp(2.5rem, 6vw, 4rem) 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .section-heading {
+        margin: 0 0 1rem;
+        font-size: clamp(1.65rem, 4vw, 2.35rem);
+        line-height: 1.1;
+      }
+
+      .section-copy {
+        max-width: 72ch;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .card {
+        min-height: 100%;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.25rem;
+        background: var(--surface);
+      }
+
+      .card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .cv-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.25rem;
+        background: var(--surface);
+      }
+
+      .cv-panel p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .placeholder-note {
+        color: #7c2d12;
+        font-weight: 700;
+      }
+
+      .contact-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        margin: 1.5rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .site-footer {
+        width: min(1100px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2rem 0;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 760px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 2.5rem;
+        }
+
+        .profile-wrap {
+          justify-self: start;
+          width: min(72vw, 260px);
+          order: -1;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cv-panel {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .actions,
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#main">Your Name</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#cv">CV</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="intro-title">
+        <div>
+          <p class="eyebrow">Personal website</p>
+          <h1 id="intro-title">Your Name</h1>
+          <p class="lead">
+            A concise introduction belongs here. Replace this text with a short,
+            privacy-safe summary of your work, interests, or research.
+          </p>
+          <div class="actions" aria-label="Primary actions">
+            <a class="button" href="#projects">View projects</a>
+            <a class="button secondary" href="assets/cv.pdf">Download placeholder CV</a>
+          </div>
+        </div>
+        <div class="profile-wrap">
+          <img
+            class="profile-image"
+            src="assets/profile.png"
+            width="640"
+            height="640"
+            alt="Placeholder profile portrait"
+          >
+        </div>
+      </section>
+
+      <section id="about" aria-labelledby="about-title">
+        <h2 class="section-heading" id="about-title">About</h2>
+        <p class="section-copy">
+          Write a short biography here. Keep it focused on the public details you
+          want visitors to know, such as your professional focus, academic
+          interests, or current projects.
+        </p>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 class="section-heading" id="projects-title">Projects</h2>
+        <p class="section-copy">
+          Add a few selected projects below. Each card is intentionally brief so
+          the page stays easy to scan on phones and desktops.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Project One</h3>
+            <p>Describe the goal, your role, and the result in one or two sentences.</p>
+          </article>
+          <article class="card">
+            <h3>Project Two</h3>
+            <p>Use this space for a public project, publication, or portfolio item.</p>
+          </article>
+          <article class="card">
+            <h3>Project Three</h3>
+            <p>Add a link later if you have a live demo, repository, or case study.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cv" aria-labelledby="cv-title">
+        <h2 class="section-heading" id="cv-title">CV</h2>
+        <p class="section-copy">
+          <span class="placeholder-note">Placeholder:</span>
+          the linked PDF is a safe placeholder and contains no private
+          information. Replace it with your real CV when you are ready to publish.
+        </p>
+        <div class="cv-panel">
+          <p>Use <strong>assets/cv.pdf</strong> for the published CV file.</p>
+          <a class="button" href="assets/cv.pdf">Download placeholder CV</a>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 class="section-heading" id="contact-title">Contact</h2>
+        <p class="section-copy">
+          Add only public contact links you are comfortable sharing.
+        </p>
+        <ul class="contact-list" aria-label="Contact details to add">
+          <li>Email: add a public email</li>
+          <li>GitHub: add a public profile URL</li>
+          <li>LinkedIn: add a public profile URL</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Your Name. Built as a static GitHub Pages site.</p>
+    </footer>
+  </body>
+</html>
